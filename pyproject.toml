@@ -1,0 +1,15 @@
+[project]
+name = "cloudpull"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pyinstaller>=6.21.0",
+    "pyqt5>=5.15.11",
+    "requests>=2.34.2",
+    "tzdata>=2026.3",
+]
+
+[tool.uv]
+required-environments = ["sys_platform == 'win32' and platform_machine == 'AMD64'"]

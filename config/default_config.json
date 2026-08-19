@@ -1,0 +1,7 @@
+{
+    "PROTECT_SERVER_URL": "http://vscprotect.twintechlabs.io",
+    "ARCA_URL": "http://vscarca.twintechlabs.io/",
+    "ARCA_API_KEY": "7740a73c-f497-4d7f-8e68-200b071ff320",
+    "WINPROTECT_BASE_PATH": "C:\\VSC\\WinProtect",
+    "DEFAULT_FOLDER": "C:\\VSC2\\Recorder\\Data"
+}

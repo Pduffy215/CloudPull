@@ -1,0 +1,16 @@
+﻿__pycache__/
+*.pyc
+.venv/
+build/
+dist/
+*.spec
+Pulled Streams/
+*.json
+
+!config/default_config.json
+
+# Explicitly block these log files so nothing can override them
+config/debug_output.txt
+config/Local_Log.txt
+config/monitorLog.txt
+

@@ -1,0 +1,6 @@
+Stream Puller - Version History
+
+0.1.0 - 2026-07-24
+-Stream Puller — pulls previously posted vibration survey documents down from the ARCA cloud and reconstructs them into local .bin/.wav files
+-Only pulls documents that have already been posted to ARCA for a selected site/survey
+-It uses a GUI to select a site/survey, and a loading bar showing pull progress
