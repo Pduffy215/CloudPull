@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QThread, pyqtSignal
-from Config import ARCA_API_KEY, ARCA_URL, PROJECT_ROOT, CONFIG_DIR, LOG_FILE
+from Config import ARCA_API_KEY, ARCA_URL, CONFIG_DIR, LOG_FILE, PULLED_STREAMS_DIR
 from GetArcaKeys import get_arca_keys
 from SearchArcaMatch import search_arca_match
 from Base64ToVolts import base64_to_int32_array, int32_to_volts
@@ -43,7 +43,7 @@ class PullWorker(QThread):
         # resolve output folder + figure out what's already been pulled
         dt = datetime.strptime(self.measurement_start_time, "%Y-%m-%d %H:%M:%S")
         result = dt.strftime("%m_%d_%y")
-        output_folder = os.path.join(PROJECT_ROOT, "Pulled Streams", f"{data['partitions']['company_name']}_{result} Pulled") 
+        output_folder = os.path.join(PULLED_STREAMS_DIR, f"{data['partitions']['company_name']}_{result} Pulled") 
         local_log_output_path = os.path.join(CONFIG_DIR, "Local_Log.txt")
 
         try:

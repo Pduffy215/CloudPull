@@ -25,6 +25,7 @@ SETTINGS_PATH = os.path.join(CONFIG_DIR, "default_config.json")
 # Defaults used for any key missing from config.json, and used to generate
 # a starter config.json the first time the app runs somewhere new.
 _DEFAULTS = {
+    "PULLED_STREAMS_DIR": os.path.join(PROJECT_ROOT, "Pulled Streams"),
     "PROTECT_SERVER_URL": "http://vscprotect.twintechlabs.io",
     "ARCA_URL": "http://vscarca.twintechlabs.io/",
     "ARCA_API_KEY": "7740a73c-f497-4d7f-8e68-200b071ff320",
@@ -65,6 +66,10 @@ _settings = _load_settings()
 
 ARCA_URL            = _settings["ARCA_URL"]
 
+# Output folder for streams pulled down from ARCA/PROTECT - user-editable via
+# default_config.json, same pattern as everything else in _settings.
+PULLED_STREAMS_DIR = _settings["PULLED_STREAMS_DIR"]
+os.makedirs(PULLED_STREAMS_DIR, exist_ok=True)
+
 # ── API keys / credentials ──────────────────────────────────────────────────
 ARCA_API_KEY = _settings["ARCA_API_KEY"]
-
