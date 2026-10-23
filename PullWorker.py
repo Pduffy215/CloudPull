@@ -16,10 +16,13 @@ import requests
 import time
 import sys
 import os
+import re
 
 sys.stdout = open(os.path.join(CONFIG_DIR, "debug_output.txt"), "w", buffering=1)
 sys.stderr = sys.stdout
 
+def safe_name(s: str) -> str:
+    return re.sub(r'[<>:"/\\|?*]', '-', str(s)).strip().rstrip('.')
 
 class PullWorker(QThread):
     # runs the network/file work off the GUI thread so the window never freezes
@@ -43,7 +46,7 @@ class PullWorker(QThread):
         # resolve output folder + figure out what's already been pulled
         dt = datetime.strptime(self.measurement_start_time, "%Y-%m-%d %H:%M:%S")
         result = dt.strftime("%m_%d_%y")
-        output_folder = os.path.join(PULLED_STREAMS_DIR, f"{data['partitions']['company_name']}_{result} Pulled") 
+        output_folder = os.path.join(PULLED_STREAMS_DIR, safe_name(f"{data['partitions']['company_name']}_{result} Pulled"))
         local_log_output_path = os.path.join(CONFIG_DIR, "Local_Log.txt")
 
         try:
@@ -86,7 +89,7 @@ class PullWorker(QThread):
             try:
                 doc_start = time.monotonic()  # timer for this doc's download speed
                 ts = datetime.fromisoformat(doc["indices"]["measurement_start_time"])
-                folder_name = f"{doc['partitions']['machine_name']}_{doc['indices']['bearing_name'].replace(" ", "_")}_Triax_{ts:%y%m%d_%H%M%S}"
+                folder_name = safe_name(f"{doc['partitions']['machine_name']}_{doc['indices']['bearing_name'].replace(' ', '_')}_Triax_{ts:%y%m%d_%H%M%S}")
                 output_path = os.path.join(output_folder, folder_name)
             except Exception as e:
                 self.error_occurred.emit("Bearing Failed", f"{bearing_id}\n\n{e}")
